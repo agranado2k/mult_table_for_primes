@@ -1,6 +1,12 @@
 require "test_helper"
 
+require 'terminal-table'
+
 class MultTable
+  def print_table(table)
+    Terminal::Table.new(rows: table).render + "\n"
+  end
+
   def create_table(limit=10)
     primes = prime_numbers(limit)
     table = [["#"] + primes]
@@ -47,5 +53,19 @@ class MultTableTest < Minitest::Test
     ]
 
     assert_equal table, @mult_table.create_table(3)
+  end
+
+  def test_print_table
+    table = @mult_table.create_table(3)
+    output = <<~END
+      +---+----+----+----+
+      | # | 2  | 3  | 5  |
+      | 2 | 4  | 6  | 10 |
+      | 3 | 6  | 9  | 15 |
+      | 5 | 10 | 15 | 25 |
+      +---+----+----+----+
+    END
+
+    assert_equal output, @mult_table.print_table(table)
   end
 end
