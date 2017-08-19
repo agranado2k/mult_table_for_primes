@@ -1,5 +1,5 @@
 require 'terminal-table'
-require 'my_prime'
+require_relative './my_prime'
 
 class MultTable
   def print_table(table)
