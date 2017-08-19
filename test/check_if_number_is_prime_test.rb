@@ -1,5 +1,15 @@
 require "minitest/autorun"
 
+class MyPrime
+  def prime?(number)
+    return false if number < 2
+    return true if number == 2 || number == 3
+
+    limit = Math.sqrt(number).round
+    4.upto(limit).select{|n| ((number % n) == 0)}.empty?
+  end
+end
+
 class IsPrimeTest < Minitest::Test
   def setup
     @my_prime = MyPrime.new
@@ -19,6 +29,10 @@ class IsPrimeTest < Minitest::Test
 
   def test_5_is_prime
     assert @my_prime.prime?(5)
+  end
+
+  def test_37_is_prime
+    assert @my_prime.prime?(37)
   end
 
   def test_4_is_not_prime
