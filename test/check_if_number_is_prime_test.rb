@@ -6,7 +6,7 @@ class MyPrime
     return true if number == 2 || number == 3
 
     limit = Math.sqrt(number).round
-    4.upto(limit).select{|n| ((number % n) == 0)}.empty?
+    2.upto(limit).select{|n| ((number % n) == 0)}.empty?
   end
 end
 
@@ -36,10 +36,10 @@ class IsPrimeTest < Minitest::Test
   end
 
   def test_4_is_not_prime
-    assert @my_prime.prime?(4)
+    refute @my_prime.prime?(4)
   end
 
   def test_10_is_not_prime
-    assert @my_prime.prime?(10)
+    refute @my_prime.prime?(10)
   end
 end
